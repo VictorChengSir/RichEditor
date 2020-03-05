@@ -2,27 +2,12 @@ package com.rex.richeditor;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
+import androidx.core.app.ActivityCompat;
+
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.rex.editor.view.RichEditorNew;
-import com.rex.richeditor.tools.ChooseDialog;
-import com.rex.richeditor.tools.ChooseDialog.Type;
-import com.rex.richeditor.tools.ChooseDialogData;
-import com.rex.richeditor.tools.EditToolAdapter;
-
-import static com.rex.richeditor.tools.HttpFakeUtils.TEST_IMAGE_URL;
-import static com.rex.richeditor.tools.HttpFakeUtils.TEST_VIDEO_URL;
-import static com.rex.richeditor.tools.HttpFakeUtils.TEST_WEB_URL;
 
 /**
  * @author Rex
@@ -39,7 +24,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         verifyStoragePermissions(this);
     }
-
 
 
     public void goSimpleCalls(View view){

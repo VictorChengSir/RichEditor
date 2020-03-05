@@ -8,6 +8,7 @@ import com.rex.editor.common.EssFile;
  */
 public class HttpFakeUtils {
 
+
     public final static String TEST_VIDEO_URL = "https://www.w3school.com.cn/example/html5/mov_bbb.mp4";
     public final static String TEST_IMAGE_URL = "http://pic44.nipic.com/20140716/8716187_010828140000_2.jpg";
     public final static String TEST_WEB_URL = "https://github.com/RexSuper/RichHtmlEditorForAndroid";

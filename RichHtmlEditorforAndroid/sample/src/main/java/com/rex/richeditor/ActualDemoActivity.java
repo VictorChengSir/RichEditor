@@ -3,7 +3,7 @@ package com.rex.richeditor;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +29,7 @@ public class ActualDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actual_demo);
         richEditor = findViewById(R.id.richEditor);
+        richEditor.getSettings().setAllowFileAccess(true);
         //自动为视频添加缩略图
         richEditor.setNeedAutoPosterUrl(true);
         richEditor.focusEditor();
@@ -148,7 +149,6 @@ public class ActualDemoActivity extends AppCompatActivity {
                     richEditor.insertFileWithDown(essFile.getAbsolutePath(), "文件:" + essFile.getName());
                 }
             }
-
 
         }
         super.onActivityResult(requestCode, resultCode, data);

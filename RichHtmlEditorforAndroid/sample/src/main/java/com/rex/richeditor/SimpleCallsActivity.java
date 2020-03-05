@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
+import android.os.Environment;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +23,8 @@ import com.rex.richeditor.tools.ChooseDialog.Type;
 import com.rex.richeditor.tools.ChooseDialogData;
 import com.rex.richeditor.tools.EditToolAdapter;
 
-import static com.rex.richeditor.tools.HttpFakeUtils.TEST_IMAGE_URL;
+import java.io.File;
+
 import static com.rex.richeditor.tools.HttpFakeUtils.TEST_VIDEO_URL;
 import static com.rex.richeditor.tools.HttpFakeUtils.TEST_WEB_URL;
 
@@ -193,8 +197,18 @@ public class SimpleCallsActivity extends Activity {
         richEditor.insertVideo(TEST_VIDEO_URL);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void insertImage() {
-        richEditor.insertImage(TEST_IMAGE_URL);
+
+        File directory_doc = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+        //使用这个方法需要传入公共目录的类型如Environment.DIRECTORY_DOCUMENTS
+        //查看公共目录文档文件的路径
+        Log.e("csz", "得到的公共目录:" + directory_doc);
+
+        File imgPath = new File("/storage/emulated/0/DCIM/Camera/IMG_20200226_180437.jpg");
+        if (imgPath.exists()) {
+            richEditor.insertImage("file://+" + imgPath.getPath());
+        }
     }
 
     @Override
@@ -215,7 +229,7 @@ public class SimpleCallsActivity extends Activity {
         pb = findViewById(R.id.pb);
         richEditor.setHint("请输入内容");
         // fixme
-//        richEditor.setHintColor("#123456");
+        //        richEditor.setHintColor("#123456");
         richEditor.setPadding(10, 10, 10, 10);
         editToolAdapter = new EditToolAdapter(this);
         gvList.setAdapter(editToolAdapter);
